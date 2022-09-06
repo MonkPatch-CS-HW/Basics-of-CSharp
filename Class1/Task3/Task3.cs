@@ -12,7 +12,12 @@
  * f(x) = 	1,	если x принадлежит [0, 1), [2, 3), …,
            −1,	если x принадлежит [1, 2), [3, 4), … .
  */
-        internal static double F(double x) => throw new NotImplementedException();
+        internal static double F(double x)
+        {
+            if (x < 0) return 0;
+            if (0 <= x % 2 && x % 2 < 1) return 1;
+            return -1;
+        }
 
 /*
  * Задание 3.2. Дан номер года (положительное целое число). Определить количество дней в этом году,
@@ -20,7 +25,12 @@
  * делящийся на 4, за исключением тех годов, которые делятся на 100 и не делятся на 400
  * (например, годы 300, 1300 и 1900 не являются високосными, а 1200 и 2000 — являются).
  */
-        internal static int NumberOfDays(int year) => throw new NotImplementedException();
+        internal static int NumberOfDays(int year)
+        {
+            if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+                return 366;
+            return 365;
+        }
 
 /*
  * Задание 3.3. Локатор ориентирован на одну из сторон света («С» — север, «З» — запад,
@@ -31,9 +41,18 @@
  */
         internal static char Rotate2(char orientation, int cmd1, int cmd2)
         {
-            char rotate1(char orientation, int cmd) => throw new NotImplementedException();
+            char[] orientations = { 'С', 'З', 'Ю', 'В', };
 
-            throw new NotImplementedException();
+            char rotate1(char orientation, int cmd)
+            {
+                int index = Array.IndexOf(orientations, orientation);
+                int newIndex = (index + orientations.Length + cmd) % orientations.Length;
+                return orientations[newIndex];
+            };
+
+            char result1 = rotate1(orientation, cmd1);
+            char result2 = rotate1(result1, cmd2);
+            return result2;
         }
 
 /*
@@ -47,13 +66,39 @@
  */
         internal static String AgeDescription(int age)
         {
-            throw new NotImplementedException();
+            string[] tens =
+            {
+                "[0]",
+                "[1]",
+                "двадцать",
+                "тридцать",
+                "сорок",
+                "пятьдесят",
+                "шестьдесят",
+            };
+            string[] ones =
+            {
+                "лет",
+                "один год",
+                "два года",
+                "три года",
+                "четыре года",
+                "пять лет",
+                "шесть лет",
+                "семь лет",
+                "восемь лет",
+                "девять лет",
+            };
+
+            return $"{tens[age / 10]} {ones[age % 10]}";
         }
 
         public static void Main(string[] args)
         {
-            throw new NotImplementedException(
-                "Вызовите здесь все перечисленные в классе функции, как это сделано в предыдущих заданиях");
+            Console.WriteLine(F(0));
+            Console.WriteLine(NumberOfDays(2014));
+            Console.WriteLine(Rotate2('С', 1, 1));
+            Console.WriteLine(AgeDescription(69));
         }
     }
 }

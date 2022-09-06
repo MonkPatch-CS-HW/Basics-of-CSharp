@@ -17,7 +17,17 @@
  */
         internal static void PrintFrame(int width, int height, char frameChar = '*')
         {
-            throw new NotImplementedException();
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x <= width; x++)
+                    if (x == width)
+                        Console.Write('\n');
+                    else if (x == width && y == height) ;
+                    else if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
+                        Console.Write(frameChar);
+                    else
+                        Console.Write(' ');
+            }
         }
 
 /*
@@ -25,7 +35,19 @@
  */
         internal static void PrintFrame2(int width, int height, char frameChar = '*')
         {
-            throw new NotImplementedException();
+            int y = -1;
+            while (++y < height)
+            {
+                int x = -1;
+                while (++x <= width)
+                    if (x == width)
+                        Console.Write('\n');
+                    else if (x == width && y == height) ;
+                    else if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
+                        Console.Write(frameChar);
+                    else
+                        Console.Write(' ');
+            }
         }
 
 
@@ -37,7 +59,12 @@
  */
         internal static long Gcd(long a, long b)
         {
-            throw new NotImplementedException();
+            while (b != 0)
+            {
+                (a, b) = (b, a % b);
+            }
+
+            return a;
         }
 
 /*
@@ -47,14 +74,28 @@
  */
         internal static double ExpTaylor(double x, int n)
         {
-            throw new NotImplementedException();
+            int nfac = 1;
+            double xpow = 1;
+            double sum = 1;
+            for (int i = 1; i <= n; i++)
+            {
+                if (nfac > Int32.MaxValue / i)
+                    nfac = Int32.MaxValue;
+                else
+                    nfac *= i;
+                xpow *= x;
+                sum += xpow / nfac;
+            }
+
+            return sum;
         }
 
         public static void Main(string[] args)
         {
             PrintFrame(5, 3, '+');
-            throw new NotImplementedException(
-                "Вызовите здесь все перечисленные в классе функции, как это сделано в предыдущих заданиях");
+            PrintFrame2(5, 3, '+');
+            Console.WriteLine(Gcd(5, 3));
+            Console.WriteLine(ExpTaylor(0.1, 1000));
         }
     }
 }

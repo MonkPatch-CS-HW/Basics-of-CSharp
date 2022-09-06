@@ -10,7 +10,7 @@
  */
         internal static void SayHello(String name)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Hello {name}!");
         }
 
 /*
@@ -20,7 +20,8 @@
  */
         internal static void HelloUser()
         {
-            throw new NotImplementedException();
+            String user = Console.ReadLine()!;
+            SayHello(user);
         }
 
 /*
@@ -31,7 +32,8 @@
  */
         internal static void Square()
         {
-            throw new NotImplementedException();
+            int number = Int32.Parse(Console.ReadLine()!);
+            Console.WriteLine(number * number);
         }
 
 /*
@@ -40,7 +42,9 @@
  */
         internal static void Sum()
         {
-            throw new NotImplementedException();
+            int number1 = Int32.Parse(Console.ReadLine()!);
+            int number2 = Int32.Parse(Console.ReadLine()!);
+            Console.WriteLine(number1 + number2);
         }
 
         public static void Main(string[] args)
