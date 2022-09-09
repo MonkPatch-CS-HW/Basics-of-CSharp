@@ -1,4 +1,4 @@
-﻿namespace Task4
+namespace Task4
 {
     public class Task4
     {
@@ -74,13 +74,13 @@
  */
         internal static double ExpTaylor(double x, int n)
         {
-            int nfac = 1;
+            long nfac = 1;
             double xpow = 1;
             double sum = 1;
             for (int i = 1; i <= n; i++)
             {
-                if (nfac > Int32.MaxValue / i)
-                    nfac = Int32.MaxValue;
+                if (nfac > Int64.MaxValue / i)
+                    nfac = Int64.MaxValue;
                 else
                     nfac *= i;
                 xpow *= x;
